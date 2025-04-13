@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art History - AI Art Generator</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-paint-brush text-purple-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">AI Art Generator</span>
+                    </a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="generate_art.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Generate Art</a>
+                    <a href="history.html" class="text-white px-3 py-2 rounded-md text-sm font-medium">History</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold">Your Art History</h1>
+                <button
+                    onclick="clearHistory()"
+                    class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium flex items-center space-x-2"
+                >
+                    <i class="fas fa-trash"></i>
+                    <span>Clear History</span>
+                </button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <div class="text-gray-500">
+                    <i class="fas fa-images text-6xl mb-4"></i>
+                    <h2 class="text-2xl font-medium mb-2">No Artwork Yet</h2>
+                    <p class="text-gray-400">Start generating some amazing AI art!</p>
+                    <a
+                        href="generate_art.html"
+                        class="inline-block mt-4 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-medium"
+                    >
+                        Generate Your First Art
+                    </a>
+                </div>
+            </div>
+
+            <!-- Art Grid -->
+            <div id="artGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Art items will be dynamically inserted here -->
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-500">
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="text-gray-400 text-sm">
+                    © 2024 AI Art Generator. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Art Item Template -->
+    <template id="artItemTemplate">
+        <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
+            <div class="relative aspect-w-16 aspect-h-9">
+                <img src="" alt="Generated Art" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <p class="text-gray-300 text-sm line-clamp-2"></p>
+                <div class="mt-4 flex justify-between items-center">
+                    <span class="text-gray-400 text-sm"></span>
+                    <button
+                        onclick="deleteArtItem(this)"
+                        class="text-red-500 hover:text-red-400"
+                        title="Delete"
+                    >
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
